@@ -29,7 +29,7 @@ gy, gx = list(map(int, input().split()))
 S = []
 
 for i in range(R):
-  s = input
+  s = input()
   S.append(s)
 
 sy -= 1

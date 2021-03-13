@@ -23,7 +23,7 @@ h = list(map(int, input().split()))
 
 cost = [0] * N
 
-done = [False}*N
+done = [False]*N
 
 def rec(i):
   if done[i]:
@@ -39,30 +39,6 @@ def rec(i):
   return cost[i]
 
 print(rec(N-1))
-
-
-# 動的計画法なし
-N = int(input())
-ary = list(map(int, input().split()))
-
-now = 0
-ans = 0
-
-while now < N-1:
-  if now != N-2:
-    step1 = abs(ary[now+1]-ary[now])
-    step2 = abs(ary[now+2]-ary[now])
-    if step1 >= step2:
-      ans += step2
-      now += 2
-    else:
-      ans += step1
-      now += 1
-  else:
-    ans += abs(ary[now+1]-ary[now])
-    now += 1
-
-print(ans)
 
 # Frog1(Atcoder Educational DP Contest) B
 N,K = map(int, input().split())
@@ -110,3 +86,34 @@ for i in [L-3, L-2, L-1]:
     ans = min(ans, cost[i] + T1//T2 + T2*(2*(L-i)-1)//2)
 
 print(ans)
+
+
+# Knapsack1(AtCoder Educational DP Contest D問題)
+N,W = map(int, input().split())
+
+ws = [0]
+vs = [0]
+
+for i in range(N):
+  w,v = list(map(int, input().split()))
+  ws.append(w)
+  vs.append(v)
+
+# 品物iまで受取状況完了している際に、各重さ0~Wまでの価値の最大値を二重配列として獲得
+value = []
+for i in range(N+1):
+  value.append([-10**18]*(W+1))
+
+value[0][0] = 0
+
+for i in range(1, N+1):
+  for w in range(W+1):
+    # 品物iを受け取らない場合
+    value[i][w] = max(value[i][w], value[i-1][w])
+    # 品物iを受け取る場合
+    if w-ws[i] >= 0:
+      value[i][w] = max(value[i][w], value[i-1][w-ws[i]] + vs[i])
+
+ans = max(value[N])
+print(ans)
+
