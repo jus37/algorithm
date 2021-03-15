@@ -60,6 +60,10 @@ while len(Q) >0:
 print(dist[gy][gx])
 
 
+
+
+
+
 # 深さ優先探索法の基本
 
 # 再起上限を増やす
