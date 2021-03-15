@@ -60,6 +60,43 @@ while len(Q) >0:
 print(dist[gy][gx])
 
 
+# 第三回アルゴリズム実技検定 G問題
+from collections import deque
+N,X,Y = map(int, input().split())
+h = []
+for _ in range(N):
+  n = list(map(int, input().split()))
+  n[0] += 250
+  n[1] += 250
+  h.append(n)
+
+
+X += 250
+Y += 250
+sx,sy = 250,250
+
+map =[]
+for _ in range(501):
+  map.append([-1]*501)
+for xx,yy in h:
+  map[xx][yy] = "#"
+
+Q = deque()
+Q.append([sx,sy])
+map[sx][sy] = 0
+
+
+while len(Q) > 0:
+  i,j = Q.popleft()
+  for x,y in [[i+1,j], [i+1,j+1], [i,j+1], [i-1,j], [i-1,j+1], [i, j-1]]:
+    if not(0<= x <= 500 and 0<= y <= 500):
+      continue
+    if map[x][y] == "#":
+      continue
+    if map[x][y] == -1:
+      map[x][y] = map[i][j] + 1
+      Q.append([x,y])
+print(map[X][Y])
 
 
 

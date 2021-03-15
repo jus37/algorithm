@@ -18,7 +18,7 @@ pprime = []
 end
 pprime.sort!
 
-# pprimeに格納されている整数のうち、Xすべてと最小公倍数が1にならない最小値がanswer
+# pprimeに格納されている整数のうち、Xすべてと最小公約数が1にならない最小値がanswer
 ans = 0
 pprime.each do |i|
   if X.all?{|e| e.gcd(i) != 1}
