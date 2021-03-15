@@ -110,7 +110,7 @@ for i in range(1, N+1):
   for w in range(W+1):
     # 品物iを受け取らない場合
     value[i][w] = max(value[i][w], value[i-1][w])
-    # 品物iを受け取る場合
+    # 品物iを受け取る場合(w-ws[i]が0以上の場合、それ以降の重さすべてこの価値を加える)
     if w-ws[i] >= 0:
       value[i][w] = max(value[i][w], value[i-1][w-ws[i]] + vs[i])
 

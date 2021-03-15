@@ -4,28 +4,30 @@
 N = int(input())
 C = list(map(int, input().split()))
 Q = int(input())
-
+# 合計販売枚数
 sell = 0
-
+# セット販売で支払うカード枚数(sは奇数の場合のみ)
 z = 0
-
 s = 0
 
 min_s_C = 1000000000
 min_z_C = 1000000000
 
+
 for i in range(0, N):
   if i % 2 == 0:
+    # i%2==0のうち、最小の数値を変数として取得
     min_s_C = min(C[i], min_s_C)
   else:
+    # i%2==1のうち、最小の数値を変数として取得
     min_z_C = min(C[i], min_z_C)
 
 for _ in range(0, Q):
   query = list(map(int, input().split()))
 
   if query[0] == 1:
-    x = query[1] - 1
-    a = query[2]
+    x = query[1] - 1  # 対象となるカード番号
+    a = query[2]  # 減らす枚数
 
     if x % 2 == 0:
       card_x = C[x] - z - s
@@ -36,6 +38,7 @@ for _ in range(0, Q):
       C[x] -= a
       sell += a
 
+      # カード移動の処理の後、最小を更新
       if x % 2 == 0:
         min_s_C = min(C[x], min_s_C)
       else:
