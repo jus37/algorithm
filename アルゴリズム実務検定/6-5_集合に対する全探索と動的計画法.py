@@ -8,7 +8,7 @@ for i in range(N-1):
 ALL = 1 << N #=2**N
 
 happy = [0]*ALL
-# 該当する1〜Nの数字が集合に含まれているかを確認
+# 該当する1〜Nの数字(i)が集合に含まれているかを確認
 def has_bit(n, i):
   return (n & (1<<i) > 0)
 
