@@ -7,7 +7,7 @@ for i in range(0, N):
   row = [False]*N
   graph.append(row)
 
-for i in rage(0, M):
+for i in range(0, M):
   u, v = map(int, input().split())
 
   u -= 1
